@@ -6,18 +6,27 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-        
+    
+    def rate_hw(self, lector, course, grade):
+        if isinstance(lector, Lectors) and course in self.courses_attached:
+            if course in lector.grades:
+                lector.grades[course] += [grade]
+            else:
+                lector.grades[course] = [grade]
+        else:
+            return 'Ошибка'    
+               
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
         self.courses_attached = []
-               
-class Lectors(Mentor):
+              
+class Lectors(Mentor, Student):
     def __init__(self, name, surname):
         Mentor.__init__(self, name, surname)
         self.grades = {}
-        
+ 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         Mentor.__init__(self, name, surname)
@@ -29,21 +38,26 @@ class Reviewer(Mentor):
             else:
                 student.grades[course] = [grade]
         else:
-            return 'Ошибка'        
+            return 'Ошибка'
 
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
  
-cool_reviewer = Reviewer('Some', 'Buddy')
-cool_reviewer.courses_attached += ['Python']
+reviewer = Reviewer('Some', 'Buddy')
+reviewer.courses_attached += ['Python']
  
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
-cool_reviewer.rate_hw(best_student, 'Python', 10)
+reviewer.rate_hw(best_student, 'Python', 10)
+reviewer.rate_hw(best_student, 'Python', 10)
+reviewer.rate_hw(best_student, 'Python', 10)
 
-cool_lectors = Lectors('Oleg', 'Byligin')
-cool_lectors.courses_attached += ['Python']
+lector = Lectors('Oleg', 'Byligin')
+lector.courses_attached += ['Python']
+
+lector.rate_hw(lector, 'Python', 10)
+lector.rate_hw(lector, 'Python', 10)
+lector.rate_hw(lector, 'Python', 10)
 
 print(best_student.grades)
-print(cool_reviewer.name, cool_reviewer.surname, cool_reviewer.courses_attached)
-print(cool_lectors.name, cool_lectors.surname, cool_lectors.courses_attached)
+print(reviewer.name, reviewer.surname, reviewer.courses_attached)
+print(lector.name, lector.surname, lector.courses_attached)
+print(lector.grades)
