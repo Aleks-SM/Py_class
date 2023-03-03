@@ -50,7 +50,7 @@ reviewer.rate_hw(best_student, 'Python', 10)
 reviewer.rate_hw(best_student, 'Python', 10)
 reviewer.rate_hw(best_student, 'Python', 10)
 
-lector = Lectors('Oleg', 'Byligin')
+lector = Lectors('Petra', 'Berger')
 lector.courses_attached += ['Python']
 
 lector.rate_hw(lector, 'Python', 10)
