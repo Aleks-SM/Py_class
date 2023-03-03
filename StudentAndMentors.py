@@ -6,16 +6,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
-    
-    def rate_hw(self, lector, course, grade):
-        if isinstance(lector, Lectors) and course in self.courses_attached:
-            if course in lector.grades:
-                lector.grades[course] += [grade]
-            else:
-                lector.grades[course] = [grade]
-        else:
-            return 'Ошибка'    
-               
+                  
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
