@@ -13,7 +13,7 @@ class Mentor:
         self.surname = surname
         self.courses_attached = []
               
-class Lectors(Mentor, Student):
+class Lectors(Mentor):
     def __init__(self, name, surname):
         Mentor.__init__(self, name, surname)
  
