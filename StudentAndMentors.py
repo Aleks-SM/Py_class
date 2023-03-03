@@ -12,6 +12,15 @@ class Mentor:
         self.name = name
         self.surname = surname
         self.courses_attached = []
+               
+class Lectors(Mentor):
+    def __init__(self, name, surname):
+        Mentor.__init__(self, name, surname)
+        self.grades = {}
+        
+class Reviewer(Mentor):
+    def __init__(self, name, surname):
+        Mentor.__init__(self, name, surname)
         
     def rate_hw(self, student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
@@ -20,8 +29,8 @@ class Mentor:
             else:
                 student.grades[course] = [grade]
         else:
-            return 'Ошибка'
- 
+            return 'Ошибка'        
+
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
  
