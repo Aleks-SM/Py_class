@@ -40,6 +40,3 @@ reviewer.courses_attached += ['Python']
 reviewer.rate_hw(best_student, 'Python', 10)
 reviewer.rate_hw(best_student, 'Python', 10)
 reviewer.rate_hw(best_student, 'Python', 10)
-
-lector = Lectors('Oleg', 'Byligin')
-lector.courses_attached += ['Python']
