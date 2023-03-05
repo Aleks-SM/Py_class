@@ -1,7 +1,6 @@
 class Human:
     def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
+        self.atributes = {'name': name, 'surname': surname}
 
 class Student(Human):
     def __init__(self, name, surname):
@@ -11,17 +10,11 @@ class Student(Human):
         self.grades = {}
 
     def __str__(self):
-        return f'Имя: {self.name}\n' \
-               f'Фамилия: {self.surname}\n' \
-               f'Средняя оценка за домашние задания: {self.average_rate()}\n' \
+        return f'Имя: {self.atributes.get("name")}\n' \
+               f'Фамилия: {self.atributes.get("surname")}\n' \
+               f'Средняя оценка за домашние задания: {average_rate(self)}\n' \
                f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\n' \
                f'Завершенные курсы: {", ".join(self.finished_courses)}\n'
-
-    def average_rate(self):
-        lst = []
-        for value in self.grades.values():
-            lst.extend(value)
-        return '{:.3}'.format(sum(lst) / len(lst))
 
     def rate_hw(self, lecturer, course, grade):
         if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and self.courses_in_progress:
@@ -38,34 +31,40 @@ class Student(Human):
     def add_courses_in_progress(self, course_name):
         self.courses_in_progress.append(course_name)
 
+
 class Mentor(Human):
     def __init__(self, name, surname):
-        super().__init__(name, surname, )
+        super().__init__(name, surname)
         self.courses_attached = []
 
 class Lecturer(Mentor):
     def __init__(self, name, surname):
-        super().__init__(name, surname, )
+        super().__init__(name, surname)
         self.grades = {}
 
     def __str__(self):
-        return f'Имя: {self.name}\n' \
-               f'Фамилия: {self.surname}\n' \
-               f'Средняя оценка за лекции: {self.average_rate()}\n'
+        return f'Имя: {self.atributes.get("name")}\n' \
+               f'Фамилия: {self.atributes.get("surname")}\n' \
+               f'Средняя оценка за лекции: {average_rate(self)}\n'
 
-    def average_rate(self):
-        lst = []
-        for value in self.grades.values():
-            lst.extend(value)
-        return '{:.3}'.format(sum(lst) / len(lst))
+    # def __eq__(self, other): #==
+    #     return self.average_rate == other.mark
+    #
+    # def __lt__(self, other):
+    #     return self.average_rate < other.mark
+    #
+    # def __le__(self, other):
+    #     return self.average_rate <= other.mark
+
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
-        super().__init__(name, surname, )
+        super().__init__(name, surname)
 
     def __str__(self):
-        return f'Имя: {self.name}\n' \
-               f'Фамилия: {self.surname}\n' \
+        return f'Имя: {self.atributes.get("name")}\n' \
+               f'Фамилия: {self.atributes.get("surname")}\n' \
                f'Читает лекции на курсах: {", ".join(self.courses_attached)}\n'
 
     def rate_hw(self, student, course, grade):
@@ -76,6 +75,13 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+
+def average_rate(person):
+    lst = []
+    for value in person.grades.values():
+        lst.extend(value)
+    return '{:.3}'.format(sum(lst)/len(lst))
+
 
 lecturer1 = Lecturer('Petra', 'Berger')
 lecturer1.courses_attached += ['Python']
