@@ -77,11 +77,17 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
 
-lecturer = Lecturer('Petra', 'Berger')
-lecturer.courses_attached += ['Python']
+lecturer1 = Lecturer('Petra', 'Berger')
+lecturer1.courses_attached += ['Python']
 
-reviewer = Reviewer('Annet', 'Olsen')
-reviewer.courses_attached += ['Python']
+lecturer2 = Lecturer('Lisa', 'Middelhauve')
+lecturer2.courses_attached += ['Git']
+
+reviewer1 = Reviewer('Annet', 'Olsen')
+reviewer1.courses_attached += ['Python']
+
+reviewer2 = Reviewer('Manuela', 'Kraller')
+reviewer2.courses_attached += ['Java']
 
 best_student = Student('Ruoy', 'Eman')
 best_student.finished_courses += ['Введение в программирование']
@@ -93,37 +99,31 @@ bad_student.finished_courses += ['Введение в программирова
 bad_student.courses_in_progress += ['Python']
 bad_student.courses_in_progress += ['Java']
 
-best_student.rate_hw(lecturer, 'Python', 10)
-best_student.rate_hw(lecturer, 'Python', 10)
-best_student.rate_hw(lecturer, 'Python', 9)
-best_student.rate_hw(lecturer, 'Python', 10)
+best_student.rate_hw(lecturer1, 'Python', 10)
+best_student.rate_hw(lecturer1, 'Python', 10)
+best_student.rate_hw(lecturer1, 'Python', 9)
+best_student.rate_hw(lecturer1, 'Python', 10)
 
-reviewer.rate_hw(best_student, 'Python', 10)
-reviewer.rate_hw(best_student, 'Python', 9)
-reviewer.rate_hw(best_student, 'Python', 9)
-reviewer.rate_hw(best_student, 'Python', 10)
+bad_student.rate_hw(lecturer2, 'Git', 10)
+bad_student.rate_hw(lecturer2, 'Git', 10)
+bad_student.rate_hw(lecturer2, 'Git', 9)
+bad_student.rate_hw(lecturer2, 'Git', 10)
 
-reviewer.rate_hw(bad_student, 'Python', 3)
-reviewer.rate_hw(bad_student, 'Python', 4)
-reviewer.rate_hw(bad_student, 'Python', 4)
-reviewer.rate_hw(bad_student, 'Python', 5)
+reviewer1.rate_hw(best_student, 'Python', 10)
+reviewer1.rate_hw(best_student, 'Python', 9)
+reviewer1.rate_hw(best_student, 'Python', 9)
+reviewer1.rate_hw(best_student, 'Python', 10)
+
+reviewer1.rate_hw(bad_student, 'Python', 3)
+reviewer1.rate_hw(bad_student, 'Python', 4)
+reviewer1.rate_hw(bad_student, 'Python', 4)
+reviewer1.rate_hw(bad_student, 'Python', 5)
 
 print(str(best_student))
 print(str(bad_student))
 
-print(str(lecturer))
+print(str(lecturer1))
+print(str(lecturer2))
 
-print(str(reviewer))
-
-lecturer = Lecturer('Lisa', 'Middelhauve')
-lecturer.courses_attached += ['Git']
-
-best_student.rate_hw(lecturer, 'Git', 10)
-best_student.rate_hw(lecturer, 'Git', 10)
-best_student.rate_hw(lecturer, 'Git', 9)
-best_student.rate_hw(lecturer, 'Git', 10)
-print(str(lecturer))
-
-reviewer = Reviewer('Manuela', 'Kraller')
-reviewer.courses_attached += ['Java']
-print(str(reviewer))
+print(str(reviewer1))
+print(str(reviewer2))
