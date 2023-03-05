@@ -11,7 +11,11 @@ class Student(Human):
         self.grades = {}
 
     def __str__(self):
-        return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за домашние задания: {self.average_rate()}\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}\nЗавершенные курсы: {", ".join(self.finished_courses)}\n'
+        return f'Имя: {self.name}\n' \
+               f'Фамилия: {self.surname}\n' \
+               f'Средняя оценка за домашние задания: {self.average_rate()}\n' \
+               f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\n' \
+               f'Завершенные курсы: {", ".join(self.finished_courses)}\n'
 
     def average_rate(self):
         lst = []
@@ -45,7 +49,9 @@ class Lecturer(Mentor):
         self.grades = {}
 
     def __str__(self):
-        return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_rate()}\n'
+        return f'Имя: {self.name}\n' \
+               f'Фамилия: {self.surname}\n' \
+               f'Средняя оценка за лекции: {self.average_rate()}\n'
 
     def average_rate(self):
         lst = []
@@ -58,7 +64,9 @@ class Reviewer(Mentor):
         super().__init__(name, surname, )
 
     def __str__(self):
-        return f'Имя: {self.name}\nФамилия: {self.surname}\nЧитает лекции на курсах: {", ".join(self.courses_attached)}\n'
+        return f'Имя: {self.name}\n' \
+               f'Фамилия: {self.surname}\n' \
+               f'Читает лекции на курсах: {", ".join(self.courses_attached)}\n'
 
     def rate_hw(self, student, course, grade):
         if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
