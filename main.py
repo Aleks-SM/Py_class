@@ -3,7 +3,6 @@ class Human:
         self.name = name
         self.surname = surname
 
-
 class Student(Human):
     def __init__(self, name, surname):
         super().__init__(name, surname)
@@ -35,12 +34,10 @@ class Student(Human):
     def add_courses_in_progress(self, course_name):
         self.courses_in_progress.append(course_name)
 
-
 class Mentor(Human):
     def __init__(self, name, surname):
         super().__init__(name, surname, )
         self.courses_attached = []
-
 
 class Lecturer(Mentor):
     def __init__(self, name, surname):
@@ -55,7 +52,6 @@ class Lecturer(Mentor):
         for value in self.grades.values():
             lst.extend(value)
         return '{:.3}'.format(sum(lst) / len(lst))
-
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -72,7 +68,6 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
-
 
 lecturer = Lecturer('Petra', 'Berger')
 lecturer.courses_attached += ['Python']
