@@ -145,6 +145,8 @@ reviewer_1.rate_hw(student_2, 'Python', 4)
 reviewer_1.rate_hw(student_2, 'Python', 4)
 reviewer_1.rate_hw(student_2, 'Python', 5)
 
+students = [student_1, student_2]
+
 print(compare_students(student_1, student_2))
 
 print(str(student_1))
