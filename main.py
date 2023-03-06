@@ -1,11 +1,22 @@
-from pprint import pprint
-
-
 class Human:
     def __init__(self, name, surname):
         self.atributes = {'name': name, 'surname': surname}
 
+    def average_rate(self):
+        lst = []
+        for value in self.grades.values():
+            lst.extend(value)
+        return '{:.3}'.format(sum(lst) / len(lst))
+    
+    def __eq__(self, other):  # ==
+        return average_rate(self) == average_rate(other)
 
+    def __lt__(self, other):
+        return average_rate(self) < average_rate(other)
+
+    def __le__(self, other):
+        return average_rate(self) <= average_rate(other)
+  
 class Student(Human):
     def __init__(self, name, surname):
         super().__init__(name, surname)
@@ -16,7 +27,7 @@ class Student(Human):
     def __str__(self):
         return f'Имя: {self.atributes.get("name")}\n' \
                f'Фамилия: {self.atributes.get("surname")}\n' \
-               f'Средняя оценка за домашние задания: {average_rate(self)}\n' \
+               f'Средняя оценка за домашние задания: {self.average_rate()}\n' \
                f'Курсы в процессе изучения: {", ".join(self.courses_in_progress)}\n' \
                f'Завершенные курсы: {", ".join(self.finished_courses)}\n'
 
@@ -28,22 +39,6 @@ class Student(Human):
                 lecturer.grades[course] = [grade]
         else:
             return 'Ошибка'
-
-    def add_courses(self, course_name):
-        self.finished_courses.append(course_name)
-
-    def add_courses_in_progress(self, course_name):
-        self.courses_in_progress.append(course_name)
-
-    def __eq__(self, other):  # ==
-        return average_rate(self) == average_rate(other)
-
-    def __lt__(self, other):
-        return average_rate(self) < average_rate(other)
-
-    def __le__(self, other):
-        return average_rate(self) <= average_rate(other)
-
 
 class Mentor(Human):
     def __init__(self, name, surname):
@@ -59,17 +54,7 @@ class Lecturer(Mentor):
     def __str__(self):
         return f'Имя: {self.atributes.get("name")}\n' \
                f'Фамилия: {self.atributes.get("surname")}\n' \
-               f'Средняя оценка за лекции: {average_rate(self)}\n'
-
-    def __eq__(self, other):  # ==
-        return average_rate(self) == average_rate(other)
-
-    def __lt__(self, other):
-        return average_rate(self) < average_rate(other)
-
-    def __le__(self, other):
-        return average_rate(self) <= average_rate(other)
-
+               f'Средняя оценка за лекции: {self.average_rate()}\n'
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -109,38 +94,38 @@ reviewer1.courses_attached += ['Python']
 reviewer2 = Reviewer('Manuela', 'Kraller')
 reviewer2.courses_attached += ['Java']
 
-best_student = Student('Ruoy', 'Eman')
-best_student.finished_courses += ['Введение в программирование']
-best_student.courses_in_progress += ['Python']
-best_student.courses_in_progress += ['Git']
+student1 = Student('Ruoy', 'Eman')
+student1.finished_courses += ['Введение в программирование']
+student1.courses_in_progress += ['Python']
+student1.courses_in_progress += ['Git']
 
-bad_student = Student('Olyx', 'Ivanov')
-bad_student.finished_courses += ['Введение в программирование']
-bad_student.courses_in_progress += ['Python']
-bad_student.courses_in_progress += ['Java']
+student2 = Student('Olyx', 'Ivanov')
+student2.finished_courses += ['Введение в программирование']
+student2.courses_in_progress += ['Python']
+student2.courses_in_progress += ['Java']
 
-best_student.rate_hw(lecturer1, 'Python', 10)
-best_student.rate_hw(lecturer1, 'Python', 10)
-best_student.rate_hw(lecturer1, 'Python', 9)
-best_student.rate_hw(lecturer1, 'Python', 10)
+student1.rate_hw(lecturer1, 'Python', 10)
+student1.rate_hw(lecturer1, 'Python', 10)
+student1.rate_hw(lecturer1, 'Python', 9)
+student1.rate_hw(lecturer1, 'Python', 10)
 
-bad_student.rate_hw(lecturer2, 'Git', 10)
-bad_student.rate_hw(lecturer2, 'Git', 9)
-bad_student.rate_hw(lecturer2, 'Git', 9)
-bad_student.rate_hw(lecturer2, 'Git', 10)
+student2.rate_hw(lecturer2, 'Git', 10)
+student2.rate_hw(lecturer2, 'Git', 9)
+student2.rate_hw(lecturer2, 'Git', 9)
+student2.rate_hw(lecturer2, 'Git', 10)
 
-reviewer1.rate_hw(best_student, 'Python', 10)
-reviewer1.rate_hw(best_student, 'Python', 9)
-reviewer1.rate_hw(best_student, 'Python', 9)
-reviewer1.rate_hw(best_student, 'Python', 10)
+reviewer1.rate_hw(student1, 'Python', 10)
+reviewer1.rate_hw(student1, 'Python', 9)
+reviewer1.rate_hw(student1, 'Python', 9)
+reviewer1.rate_hw(student1, 'Python', 10)
 
-reviewer1.rate_hw(bad_student, 'Python', 3)
-reviewer1.rate_hw(bad_student, 'Python', 4)
-reviewer1.rate_hw(bad_student, 'Python', 4)
-reviewer1.rate_hw(bad_student, 'Python', 5)
+reviewer1.rate_hw(student2, 'Python', 3)
+reviewer1.rate_hw(student2, 'Python', 4)
+reviewer1.rate_hw(student2, 'Python', 4)
+reviewer1.rate_hw(student2, 'Python', 5)
 
-print(str(best_student))
-print(str(bad_student))
+print(str(student1))
+print(str(student2))
 
 print(str(lecturer1))
 print(str(lecturer2))
@@ -157,11 +142,11 @@ print(lecturer1 == lecturer2)
 print(lecturer1 <= lecturer2)
 print(lecturer1 >= lecturer2)
 
-print(best_student < bad_student)
-print(best_student > bad_student)
+print(student1 < student2)
+print(student1 > student2)
 
-print(best_student != bad_student)
-print(best_student == bad_student)
+print(student1 != student2)
+print(student1 == student2)
 
-print(best_student <= bad_student)
-print(best_student >= bad_student)
+print(student1 <= student2)
+print(student1 >= student2)
