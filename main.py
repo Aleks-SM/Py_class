@@ -95,72 +95,81 @@ def average_rate(person):
         lst.extend(value)
     return '{:.3}'.format(sum(lst) / len(lst))
 
+def compare_students(student_1, student_2):
+    if isinstance(student_1, Student) and isinstance(student_2, Student):
+        res = f'Средняя оценка {student_1.average_rate()} ' \
+              f'студента {student_1.atributes.get("name")} {student_1.atributes.get("surname")} ' \
+              f'лучше чем оценка {student_2.average_rate()} у ' \
+              f'студента {student_2.atributes.get("name")} {student_2.atributes.get("surname")},'
+        return res
 
-lecturer1 = Lecturer('Petra', 'Berger')
-lecturer1.courses_attached += ['Python']
+lecturer_1 = Lecturer('Petra', 'Berger')
+lecturer_1.courses_attached += ['Python']
 
-lecturer2 = Lecturer('Lisa', 'Middelhauve')
-lecturer2.courses_attached += ['Git']
+lecturer_2= Lecturer('Lisa', 'Middelhauve')
+lecturer_2.courses_attached += ['Git']
 
-reviewer1 = Reviewer('Annet', 'Olsen')
-reviewer1.courses_attached += ['Python']
+reviewer_1 = Reviewer('Annet', 'Olsen')
+reviewer_1.courses_attached += ['Python']
 
-reviewer2 = Reviewer('Manuela', 'Kraller')
-reviewer2.courses_attached += ['Java']
+reviewer_2 = Reviewer('Manuela', 'Kraller')
+reviewer_2.courses_attached += ['Java']
 
-student1 = Student('Ruoy', 'Eman')
-student1.finished_courses += ['Введение в программирование']
-student1.courses_in_progress += ['Python']
-student1.courses_in_progress += ['Git']
+student_1 = Student('Ruoy', 'Eman')
+student_1 .finished_courses += ['Введение в программирование']
+student_1 .courses_in_progress += ['Python']
+student_1 .courses_in_progress += ['Git']
 
-student2 = Student('Olyx', 'Ivanov')
-student2.finished_courses += ['Введение в программирование']
-student2.courses_in_progress += ['Python']
-student2.courses_in_progress += ['Java']
+student_2 = Student('Olyx', 'Ivanov')
+student_2.finished_courses += ['Введение в программирование']
+student_2.courses_in_progress += ['Python']
+student_2.courses_in_progress += ['Java']
 
-student1.rate_hw(lecturer1, 'Python', 10)
-student1.rate_hw(lecturer1, 'Python', 10)
-student1.rate_hw(lecturer1, 'Python', 9)
-student1.rate_hw(lecturer1, 'Python', 10)
+student_1 .rate_hw(lecturer_1, 'Python', 10)
+student_1 .rate_hw(lecturer_1, 'Python', 10)
+student_1 .rate_hw(lecturer_1, 'Python', 9)
+student_1 .rate_hw(lecturer_1, 'Python', 10)
 
-student2.rate_hw(lecturer2, 'Git', 10)
-student2.rate_hw(lecturer2, 'Git', 10)
-student2.rate_hw(lecturer2, 'Git', 10)
-student2.rate_hw(lecturer2, 'Git', 10)
+student_2.rate_hw(lecturer_2, 'Git', 10)
+student_2.rate_hw(lecturer_2, 'Git', 10)
+student_2.rate_hw(lecturer_2, 'Git', 10)
+student_2.rate_hw(lecturer_2, 'Git', 10)
 
-reviewer1.rate_hw(student1, 'Python', 10)
-reviewer1.rate_hw(student1, 'Python', 9)
-reviewer1.rate_hw(student1, 'Python', 9)
-reviewer1.rate_hw(student1, 'Python', 10)
+reviewer_1.rate_hw(student_1 , 'Python', 10)
+reviewer_1.rate_hw(student_1 , 'Python', 9)
+reviewer_1.rate_hw(student_1 , 'Python', 9)
+reviewer_1.rate_hw(student_1 , 'Python', 10)
 
-reviewer1.rate_hw(student2, 'Python', 3)
-reviewer1.rate_hw(student2, 'Python', 4)
-reviewer1.rate_hw(student2, 'Python', 4)
-reviewer1.rate_hw(student2, 'Python', 5)
+reviewer_1.rate_hw(student_2, 'Python', 3)
+reviewer_1.rate_hw(student_2, 'Python', 4)
+reviewer_1.rate_hw(student_2, 'Python', 4)
+reviewer_1.rate_hw(student_2, 'Python', 5)
 
-print(str(student1))
-print(str(student2))
+print(compare_students(student_1, student_2))
 
-print(str(lecturer1))
-print(str(lecturer2))
+print(str(student_1))
+print(str(student_2))
 
-print(str(reviewer1))
-print(str(reviewer2))
+print(str(lecturer_1))
+print(str(lecturer_2))
 
-print(lecturer1 < lecturer2)
-print(lecturer1 > lecturer2)
+print(str(reviewer_1))
+print(str(reviewer_2))
 
-print(lecturer1 != lecturer2)
-print(lecturer1 == lecturer2)
+print(lecturer_1 < lecturer_2)
+print(lecturer_1 > lecturer_2)
 
-print(lecturer1 <= lecturer2)
-print(lecturer1 >= lecturer2)
+print(lecturer_1 != lecturer_2)
+print(lecturer_1 == lecturer_2)
 
-print(student1 < student2)
-print(student1 > student2)
+print(lecturer_1 <= lecturer_2)
+print(lecturer_1 >= lecturer_2)
 
-print(student1 != student2)
-print(student1 == student2)
+print(student_1 < student_2)
+print(student_1 > student_2)
 
-print(student1 <= student2)
-print(student1 >= student2)
+print(student_1 != student_2)
+print(student_1 == student_2)
+
+print(student_1 <= student_2)
+print(student_1 >= student_2)
