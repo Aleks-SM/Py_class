@@ -96,13 +96,14 @@ def average_rate(person):
     return '{:.3}'.format(sum(lst) / len(lst))
 
 def avg_grade_in_course(students, course):
-    all_grades_in_course = [] # создадим пустой список 
-    #...здесь можно пройтись по каждому студенту из 
-    #списка по конкретному курсу, взятому из аргумента 
-    #функции... 
-    avg_grade_in_course = round(sum(all_grades_in_course) / len(all_grades_in_course), 1) # формула расчёта среднего балла 
-    return avg_grade_in_course
-
+    all_grades_in_course = []
+    if len(self.grades > 0:
+          for value in self.grades.value():
+              all_grades_courses.extend(value)
+          if len(self.grades > 0:
+              average_grades = round(sum(all_grades_courses) / len(all_gades_courses, 1)
+              return average_grades
+    return 'No grades'
 
 def compare_students(student_1, student_2):
     if isinstance(student_1, Student) and isinstance(student_2, Student):
