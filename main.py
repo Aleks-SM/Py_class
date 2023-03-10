@@ -20,16 +20,17 @@ class Student(Human):
         lst = []
         for value in self.grades.values():
             lst.extend(value)
-        return '{:.3}'.format(sum(lst) / len(lst))
+        res = round(sum(lst) / len(lst), 2)
+        return res
 
     def __eq__(self, other):  # ==
-        return average_rate(self) == average_rate(other)
+        return self.average_rate() == other.average_rate()
 
     def __lt__(self, other):
-        return average_rate(self) < average_rate(other)
+        return self.average_rate() < other.average_rate()
 
     def __le__(self, other):
-        return average_rate(self) <= average_rate(other)
+        return self.average_rate() <= other.average_rate()
 
     def rate_hw(self, lecturer, course, grade):
         if isinstance(lecturer, Lecturer) and course in lecturer.courses_attached and self.courses_in_progress:
@@ -55,7 +56,8 @@ class Lecturer(Mentor):
         lst = []
         for value in self.grades.values():
             lst.extend(value)
-        return '{:.3}'.format(sum(lst) / len(lst))
+        res = round(sum(lst) / len(lst), 2)
+        return res
 
     def __str__(self):
         return f'Имя: {self.atributes.get("name")}\n' \
@@ -63,13 +65,13 @@ class Lecturer(Mentor):
                f'Средняя оценка за лекции: {self.average_rate()}\n'
 
     def __eq__(self, other):  # ==
-        return average_rate(self) == average_rate(other)
+        return self.average_rate() == other.average_rate()
 
     def __lt__(self, other):
-        return average_rate(self) < average_rate(other)
+        return self.average_rate() < other.average_rate()
 
     def __le__(self, other):
-        return average_rate(self) <= average_rate(other)
+        return self.average_rate() <= other.average_rate()
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
