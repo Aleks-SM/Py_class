@@ -59,6 +59,7 @@ class Lecturer(Mentor):
         res = round(sum(lst) / len(lst), 2)
         return res
 
+
     def __str__(self):
         return f'Имя: {self.atributes.get("name")}\n' \
                f'Фамилия: {self.atributes.get("surname")}\n' \
