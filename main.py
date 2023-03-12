@@ -25,12 +25,18 @@ class Student(Human):
         return res
 
     def __eq__(self, other):  # ==
+        if not isinstance(other, Student):
+            return 'Студент не идентифицирован'
         return self.average_rate() == other.average_rate()
 
     def __lt__(self, other):
+        if not isinstance(other, Student):
+            return 'Студент не идентифицирован'
         return self.average_rate() < other.average_rate()
 
     def __le__(self, other):
+        if not isinstance(other, Student):
+            return 'Студент не идентифицирован'
         return self.average_rate() <= other.average_rate()
 
     def rate_hw(self, lecturer, course, grade):
@@ -67,12 +73,18 @@ class Lecturer(Mentor):
                f'Средняя оценка за лекции: {self.average_rate()}\n'
 
     def __eq__(self, other):  # ==
+        if not isinstance(other, Lecturer):
+            return 'Лектор не идентифицирован'
         return self.average_rate() == other.average_rate()
 
     def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            return 'Лектор не идентифицирован'
         return self.average_rate() < other.average_rate()
 
     def __le__(self, other):
+        if not isinstance(other, Lecturer):
+            return 'Лектор не идентифицирован'
         return self.average_rate() <= other.average_rate()
 
 
@@ -99,30 +111,48 @@ class Reviewer(Mentor):
 def avg_grade_in_course(lst_student, course):
     for student in lst_student:
         if course in student.courses_in_progress:
-            average_grades = round(sum(student.grades.get(course)) / len(student.grades.get(course)), 1)
+            average_grades = round(sum(student.grades.get(course)) / len(student.grades.get(course)), 2)
             res = f'Средняя оценка по курсу {course} студента ' \
                   f'{student.atributes.get("name")} ' \
-                  f'{student.atributes.get("surname")} равна {average_grades}\n'
+                  f'{student.atributes.get("surname")} равна {average_grades}'
+            print(res)
+        else:
+            res = f'Студент {student.atributes.get("name")} {student.atributes.get("surname")}' \
+                  f'не записан на курс {course}'
             print(res)
     return
 
 
 def compare_students(student_1, student_2):
     if isinstance(student_1, Student) and isinstance(student_2, Student):
-        res = f'Средняя оценка {student_1.average_rate()} ' \
-              f'студента {student_1.atributes.get("name")} {student_1.atributes.get("surname")} ' \
-              f'лучше чем средняя оценка {student_2.average_rate()} у ' \
-              f'студента {student_2.atributes.get("name")} {student_2.atributes.get("surname")},'
-        return res
+        if student_1.__lt__(student_2):
+            res = f'Средняя оценка за домашние задания{student_1.average_rate()} ' \
+                  f'студента {student_1.atributes.get("name")} {student_1.atributes.get("surname")} ' \
+                  f'больше чем средняя оценка {student_2.average_rate()} у ' \
+                  f'студента {student_2.atributes.get("name")} {student_2.atributes.get("surname")},'
+            return res
+        else:
+            res = f'Средняя оценка за домашние задания{student_2.average_rate()} ' \
+                  f'студента {student_2.atributes.get("name")} {student_2.atributes.get("surname")} ' \
+                  f'меньше чем средняя оценка {student_1.average_rate()} у ' \
+                  f'студента {student_1.atributes.get("name")} {student_1.atributes.get("surname")},'
+            return res
 
 
 def compare_lecturer(lecturer_1, lecturer_2):
     if isinstance(lecturer_1, Lecturer) and isinstance(lecturer_2, Lecturer):
-        res = f'Средняя оценка за лекции {lecturer_1.average_rate()} ' \
-              f'лектора {lecturer_1.atributes.get("name")} {lecturer_1.atributes.get("surname")} ' \
-              f'лучше чем средняя оценка {lecturer_2.average_rate()} у ' \
-              f'лектора {lecturer_2.atributes.get("name")} {lecturer_2.atributes.get("surname")},'
-        return res
+        if lecturer_1.__lt__(lecturer_2):
+            res = f'Средняя оценка за лекции {lecturer_1.average_rate()} ' \
+                  f'лектора {lecturer_1.atributes.get("name")} {lecturer_1.atributes.get("surname")} ' \
+                  f'меньше чем средняя оценка {lecturer_2.average_rate()} у ' \
+                  f'лектора {lecturer_2.atributes.get("name")} {lecturer_2.atributes.get("surname")},'
+            return res
+        else:
+            res = f'Средняя оценка за лекции {lecturer_1.average_rate()} ' \
+                 f'лектора {lecturer_1.atributes.get("name")} {lecturer_1.atributes.get("surname")} ' \
+                 f'больше чем средняя оценка {lecturer_2.average_rate()} у ' \
+                 f'лектора {lecturer_2.atributes.get("name")} {lecturer_2.atributes.get("surname")},'
+            return res
 
 
 lecturer_1 = Lecturer('Petra', 'Berger')
@@ -163,22 +193,30 @@ reviewer_1.rate_hw(student_1, 'Python', 9)
 reviewer_1.rate_hw(student_1, 'Python', 9)
 reviewer_1.rate_hw(student_1, 'Python', 10)
 
-reviewer_1.rate_hw(student_2, 'Python', 3)
-reviewer_1.rate_hw(student_2, 'Python', 4)
+reviewer_1.rate_hw(student_1, 'Git', 9)
+reviewer_1.rate_hw(student_1, 'Git', 8)
+reviewer_1.rate_hw(student_1, 'Git', 8)
+reviewer_1.rate_hw(student_1, 'Git', 9)
+
+reviewer_1.rate_hw(student_2, 'Python', 6)
 reviewer_1.rate_hw(student_2, 'Python', 4)
 reviewer_1.rate_hw(student_2, 'Python', 5)
-reviewer_1.rate_hw(student_2, 'Python', 3)
+reviewer_1.rate_hw(student_2, 'Python', 4)
+reviewer_1.rate_hw(student_2, 'Python', 5)
 
-reviewer_1.rate_hw(student_2, 'Git', 4)
-reviewer_1.rate_hw(student_2, 'Git', 4)
-reviewer_1.rate_hw(student_2, 'Git', 4)
+reviewer_1.rate_hw(student_2, 'Git', 5)
+reviewer_1.rate_hw(student_2, 'Git', 5)
+reviewer_1.rate_hw(student_2, 'Git', 5)
 reviewer_1.rate_hw(student_2, 'Git', 5)
 
 students = [student_2, student_1]
 avg_grade_in_course(students, 'Python')
-
+print()
+avg_grade_in_course(students, 'Git')
+print()
 print(compare_students(student_1, student_2))
 print(compare_lecturer(lecturer_1, lecturer_2))
+print()
 print(str(student_1))
 print(str(student_2))
 
