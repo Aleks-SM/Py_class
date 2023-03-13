@@ -126,7 +126,7 @@ def avg_grade_in_course(lst_student, course):
 def compare_students(student_1, student_2):
     if isinstance(student_1, Student) and isinstance(student_2, Student):
         if student_1.__lt__(student_2):
-            res = f'Средняя оценка за домашние задания{student_1.average_rate()} ' \
+            res = f'Средняя оценка за домашние задания {student_1.average_rate()} ' \
                   f'студента {student_1.atributes.get("name")} {student_1.atributes.get("surname")} ' \
                   f'больше чем средняя оценка {student_2.average_rate()} у ' \
                   f'студента {student_2.atributes.get("name")} {student_2.atributes.get("surname")},'
